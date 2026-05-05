@@ -69,7 +69,7 @@ export default function Hero() {
   const heroImgRef = useRef<HTMLDivElement>(null);
 
   const heroImageSrc    = '/images/hero.jpg';
-  const heroPortraitSrc = '/images/hero-portrait.jpg';
+  const heroPortraitSrc = '/images/hero.jpg'; // same asset, portrait crop via object-position
 
   // Subtle parallax: desktop image drifts up as the hero scrolls out
   useGSAP(
@@ -156,7 +156,7 @@ export default function Hero() {
           MAIN CONTENT
       ══════════════════════════════════════════════════════ */}
       <div
-        className="relative z-10 flex w-full flex-col justify-center px-6 pb-28 pt-24 lg:w-[55%] lg:px-16 lg:pb-24"
+        className="relative z-10 flex w-full flex-col justify-center px-6 pb-28 pt-24 lg:max-w-[58%] lg:px-16 lg:pb-24"
         style={{ minHeight: '100svh' }}
       >
         {/* Overline */}
@@ -176,7 +176,7 @@ export default function Hero() {
         </motion.p>
 
         {/* Headline — three separate lines with curtain reveal */}
-        <div className="mb-10 select-none">
+        <div className="mb-10 select-none" style={{ overflow: 'visible' }}>
           {[
             { key: 'line1' as const, delay: 0.4,  indent: undefined },
             { key: 'line2' as const, delay: 0.55, indent: '15vw'   },
@@ -192,10 +192,11 @@ export default function Hero() {
                 <span
                   className="block font-display font-bold uppercase text-primary"
                   style={{
-                    fontSize:      'clamp(9vw, 18vw, 220px)',
+                    fontSize:      'clamp(48px, 9vw, 140px)',
                     lineHeight:    0.82,
                     letterSpacing: '-0.05em',
                     paddingLeft:   indent,
+                    whiteSpace:    'normal',
                   }}
                 >
                   {t(key)}
@@ -243,11 +244,11 @@ export default function Hero() {
 
       {/* ══════════════════════════════════════════════════════
           DESKTOP PORTRAIT  (absolute right, parallax target)
-          Hidden on mobile, visible from md breakpoint up.
+          Hidden below 1024 px (lg), diagonal left edge via clip-path.
       ══════════════════════════════════════════════════════ */}
       <div
-        className="absolute right-0 top-0 z-10 hidden h-full w-[40%] overflow-hidden md:block"
-        style={{ clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)' }}
+        className="absolute bottom-0 right-0 top-0 z-[1] hidden w-[42%] overflow-hidden lg:block"
+        style={{ clipPath: 'polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
       >
         {/* Oversized inner wrapper — GSAP parallax translates -80px on scroll */}
         <div

@@ -114,9 +114,8 @@ export default function AboutBlock() {
           {/* Name — proper noun, not translated */}
           <h2
             id="about-heading"
-            className="ab-item font-display font-bold text-primary"
+            className="ab-item font-display font-bold text-primary text-[clamp(2.5rem,5vw,7rem)]"
             style={{
-              fontSize:      'clamp(2.5rem, 5vw, 7rem)',
               lineHeight:    0.88,
               letterSpacing: '-0.03em',
               marginBottom:  '1.5rem',
@@ -150,9 +149,8 @@ export default function AboutBlock() {
                   />
                 )}
                 <span
-                  className="block font-display font-bold text-primary"
+                  className="block font-display font-bold text-primary text-[clamp(2rem,3vw,4.5rem)]"
                   style={{
-                    fontSize:      'clamp(2rem, 3vw, 4.5rem)',
                     lineHeight:    1,
                     letterSpacing: '-0.04em',
                   }}
