@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -15,63 +15,27 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 // ─── Framer Motion variants ──────────────────────────────────────────────────
 
 const slideUp = {
-  hidden:  { y: 48, opacity: 0 },
+  hidden:  { y: 40, opacity: 0 },
   visible: (delay: number) => ({
     y: 0,
     opacity: 1,
     transition: {
       delay,
-      duration: 0.9,
+      duration: 0.8,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   }),
 };
-
-// ─── CTA primary button ───────────────────────────────────────────────────────
-
-function PrimaryButton({ href, children }: { href: string; children: React.ReactNode }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <Link
-      href={href}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative inline-block overflow-hidden bg-primary"
-      style={{ padding: '16px 32px' }}
-    >
-      <motion.span
-        aria-hidden="true"
-        className="absolute inset-0 block bg-white"
-        initial={false}
-        animate={{ scaleX: hovered ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        style={{ transformOrigin: 'left center' }}
-      />
-      <motion.span
-        className="relative z-10 block font-display text-[13px] font-bold uppercase tracking-[0.1em]"
-        initial={false}
-        animate={{ color: hovered ? '#DB4A2B' : '#E4E2DD' }}
-        transition={{ duration: 0.28, ease: 'easeOut' }}
-      >
-        {children}
-      </motion.span>
-    </Link>
-  );
-}
 
 // ─── Hero section ─────────────────────────────────────────────────────────────
 
 export default function Hero() {
   const t = useTranslations('hero');
 
-  const heroRef   = useRef<HTMLElement>(null);
+  const heroRef    = useRef<HTMLElement>(null);
   const heroImgRef = useRef<HTMLDivElement>(null);
 
-  const heroImageSrc    = '/images/hero.jpg';
-  const heroPortraitSrc = '/images/hero.jpg'; // same asset, portrait crop via object-position
-
-  // Subtle parallax: desktop image drifts up as the hero scrolls out
+  // Subtle parallax: image drifts up as hero scrolls out
   useGSAP(
     () => {
       if (!heroImgRef.current) return;
@@ -94,163 +58,15 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden bg-base"
+      className="relative w-full overflow-hidden bg-primary"
       style={{ minHeight: '100svh' }}
     >
 
       {/* ══════════════════════════════════════════════════════
-          GRADIENT BLOBS
+          FULL-BLEED BACKGROUND IMAGE  (z-0)
+          Oversized inner div gives GSAP parallax room to move.
       ══════════════════════════════════════════════════════ */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute"
-          style={{
-            width: '60vw', height: '60vw', top: '-15vw', left: '-15vw',
-            background: '#DB4A2B', borderRadius: '50%', filter: 'blur(140px)',
-            mixBlendMode: 'multiply',
-            animation: 'blob-drift-1 13s ease-in-out infinite alternate',
-            willChange: 'transform, opacity',
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: '50vw', height: '50vw', bottom: '-10vw', right: '-10vw',
-            background: '#F8A348', borderRadius: '50%', filter: 'blur(120px)',
-            mixBlendMode: 'multiply',
-            animation: 'blob-drift-2 11s ease-in-out infinite alternate',
-            animationDelay: '2s',
-            willChange: 'transform, opacity',
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: '40vw', height: '40vw', top: '25%', left: '28%',
-            background: '#FF89A9', borderRadius: '50%', filter: 'blur(100px)',
-            mixBlendMode: 'multiply',
-            animation: 'blob-drift-3 15s ease-in-out infinite alternate',
-            animationDelay: '4s',
-            willChange: 'transform, opacity',
-          }}
-        />
-      </div>
-
-      {/* ══════════════════════════════════════════════════════
-          MOBILE BACKGROUND IMAGE
-      ══════════════════════════════════════════════════════ */}
-      {heroImageSrc && (
-        <div className="absolute inset-0 z-0 lg:hidden">
-          <Image
-            src={heroImageSrc}
-            alt="Progetto Habitat — studio work"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-primary/40" />
-        </div>
-      )}
-
-      {/* ══════════════════════════════════════════════════════
-          MAIN CONTENT
-      ══════════════════════════════════════════════════════ */}
-      <div
-        className="relative z-10 flex w-full flex-col justify-center px-6 pb-28 pt-24 lg:max-w-[58%] lg:px-16 lg:pb-24"
-        style={{ minHeight: '100svh' }}
-      >
-        {/* Overline */}
-        <motion.p
-          className="mb-10 font-body text-[14px] uppercase"
-          style={{
-            letterSpacing: '0.2em',
-            color: 'rgba(228,226,221,1)',
-            textShadow: '0 1px 8px rgba(0,0,0,0.4)',
-          }}
-          variants={slideUp}
-          custom={0.2}
-          initial="hidden"
-          animate="visible"
-        >
-          {t('overline')}
-        </motion.p>
-
-        {/* Headline — three separate lines with curtain reveal */}
-        <div className="mb-10 select-none" style={{ overflow: 'visible' }}>
-          {[
-            { key: 'line1' as const, delay: 0.4,  indent: undefined },
-            { key: 'line2' as const, delay: 0.55, indent: '15vw'   },
-            { key: 'line3' as const, delay: 0.7,  indent: '8vw'    },
-          ].map(({ key, delay, indent }) => (
-            <div key={key} className="overflow-hidden">
-              <motion.div
-                variants={slideUp}
-                custom={delay}
-                initial="hidden"
-                animate="visible"
-              >
-                <span
-                  className="block font-display font-bold uppercase text-primary"
-                  style={{
-                    fontSize:      'clamp(48px, 9vw, 140px)',
-                    lineHeight:    0.82,
-                    letterSpacing: '-0.05em',
-                    paddingLeft:   indent,
-                    whiteSpace:    'normal',
-                  }}
-                >
-                  {t(key)}
-                </span>
-              </motion.div>
-            </div>
-          ))}
-        </div>
-
-        {/* Subtext */}
-        <motion.p
-          className="mb-10 font-body text-[20px] text-primary/70"
-          style={{ maxWidth: '400px', lineHeight: 1.5 }}
-          variants={slideUp}
-          custom={0.85}
-          initial="hidden"
-          animate="visible"
-        >
-          {t('subtext')}
-        </motion.p>
-
-        {/* CTA row */}
-        <motion.div
-          className="flex flex-wrap items-center gap-6"
-          variants={slideUp}
-          custom={1.0}
-          initial="hidden"
-          animate="visible"
-        >
-          <PrimaryButton href="/projects">{t('cta_primary')}</PrimaryButton>
-
-          <Link
-            href="/philosophy"
-            className="group flex items-center gap-2 font-body text-[14px] text-accent-red transition-opacity duration-200 hover:opacity-70"
-          >
-            {t('cta_secondary')}
-            <ArrowRight
-              size={14}
-              strokeWidth={2}
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            />
-          </Link>
-        </motion.div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════
-          DESKTOP PORTRAIT  (absolute right, parallax target)
-          Hidden below 1024 px (lg), diagonal left edge via clip-path.
-      ══════════════════════════════════════════════════════ */}
-      <div
-        className="absolute bottom-0 right-0 top-0 z-[1] hidden w-[42%] overflow-hidden lg:block"
-        style={{ clipPath: 'polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-      >
-        {/* Oversized inner wrapper — GSAP parallax translates -80px on scroll */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
         <div
           ref={heroImgRef}
           style={{
@@ -263,29 +79,144 @@ export default function Hero() {
           }}
         >
           <Image
-            src={heroPortraitSrc}
-            alt="Progetto Habitat — studio portrait"
+            src="/images/hero.jpg"
+            alt="Progetto Habitat — architecture studio"
             fill
             className="object-cover object-center"
             priority
-            data-cursor="image"
           />
         </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════
-          SCROLL INDICATOR
+          DARK OVERLAY  (z-1, above image, below text)
+      ══════════════════════════════════════════════════════ */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{ zIndex: 1, background: 'rgba(0,0,0,0.45)' }}
+      />
+
+      {/* ══════════════════════════════════════════════════════
+          MAIN TEXT CONTENT  (z-2, above overlay)
+      ══════════════════════════════════════════════════════ */}
+      <div
+        className="relative flex w-full flex-col justify-center px-6 pb-28 pt-24 lg:max-w-[58%] lg:px-16 lg:pb-24"
+        style={{ minHeight: '100svh', zIndex: 2 }}
+      >
+        {/* Overline */}
+        <motion.p
+          className="mb-10 font-body text-[14px] uppercase"
+          style={{
+            letterSpacing: '0.2em',
+            color:         'rgba(228,226,221,0.75)',
+            textShadow:    '0 1px 8px rgba(0,0,0,0.4)',
+          }}
+          variants={slideUp}
+          custom={0.2}
+          initial="hidden"
+          animate="visible"
+        >
+          {t('overline')}
+        </motion.p>
+
+        {/* Headline — all three lines share the same font-size */}
+        <div className="mb-10 select-none" style={{ overflow: 'visible' }}>
+          {[
+            { key: 'line1' as const, delay: 0.4  },
+            { key: 'line2' as const, delay: 0.52 },
+            { key: 'line3' as const, delay: 0.64 },
+          ].map(({ key, delay }) => (
+            <div key={key} className="overflow-hidden">
+              <motion.div
+                variants={slideUp}
+                custom={delay}
+                initial="hidden"
+                animate="visible"
+              >
+                <span
+                  className="block font-display font-bold uppercase"
+                  style={{
+                    fontSize:      'clamp(52px, 10vw, 148px)',
+                    lineHeight:    0.85,
+                    letterSpacing: '-0.04em',
+                    color:         '#E4E2DD',
+                  }}
+                >
+                  {t(key)}
+                </span>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+
+        {/* Subtext */}
+        <motion.p
+          className="mb-10 font-body text-[18px]"
+          style={{
+            maxWidth:   '420px',
+            lineHeight: 1.55,
+            color:      'rgba(228,226,221,0.8)',
+          }}
+          variants={slideUp}
+          custom={0.78}
+          initial="hidden"
+          animate="visible"
+        >
+          {t('subtext')}
+        </motion.p>
+
+        {/* CTA row */}
+        <motion.div
+          className="flex flex-wrap items-center gap-6"
+          variants={slideUp}
+          custom={0.92}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Primary CTA */}
+          <Link
+            href="/projects"
+            className="inline-block font-display text-[13px] font-bold uppercase tracking-[0.1em] transition-opacity duration-200 hover:opacity-80"
+            style={{
+              padding:         '14px 32px',
+              background:      '#E4E2DD',
+              color:           '#1E1E1E',
+            }}
+          >
+            {t('cta_primary')}
+          </Link>
+
+          {/* Secondary CTA */}
+          <Link
+            href="/philosophy"
+            className="group flex items-center gap-2 font-body text-[14px] transition-opacity duration-200 hover:opacity-70"
+            style={{ color: '#DB4A2B' }}
+          >
+            {t('cta_secondary')}
+            <ArrowRight
+              size={14}
+              strokeWidth={2}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
+          </Link>
+        </motion.div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          SCROLL INDICATOR  (z-2, above overlay)
       ══════════════════════════════════════════════════════ */}
       <motion.div
-        className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
+        style={{ zIndex: 2 }}
         variants={slideUp}
-        custom={1.3}
+        custom={1.1}
         initial="hidden"
         animate="visible"
       >
         <span
-          className="font-body text-[11px] text-primary/50"
-          style={{ letterSpacing: '0.3em' }}
+          className="font-body text-[11px]"
+          style={{ letterSpacing: '0.3em', color: 'rgba(228,226,221,0.5)' }}
         >
           SCROLL
         </span>
@@ -299,11 +230,11 @@ export default function Hero() {
         >
           <path
             d="M7 1v14M1 10l6 7 6-7"
-            stroke="#1E1E1E"
+            stroke="#E4E2DD"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            opacity="0.45"
+            opacity="0.5"
           />
         </svg>
       </motion.div>

@@ -1,6 +1,10 @@
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500&display=swap');
 @import "tailwindcss";
 
+/* Ensure font-display:swap on all @font-face rules (overrides any CDN default) */
+@font-face { font-family: 'Clash Display'; font-display: swap; src: local('Clash Display'); }
+@font-face { font-family: 'Satoshi';       font-display: swap; src: local('Satoshi'); }
+
 /* ─────────────────────────────────────────────────────────────
    DESIGN TOKENS  (Tailwind v4 — CSS-first config via @theme)
    Colors, fonts, and spacing are declared here.

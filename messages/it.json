@@ -16,8 +16,8 @@
   },
   "portfolio": {
     "section_label": "Lavori Selezionati",
-    "line1":         "SELEZIONATI",
-    "line2":         "LAVORI",
+    "line1":         "LAVORI",
+    "line2":         "SELEZIONATI",
     "filters": {
       "all":             "Tutti",
       "residential":     "Residenziale",

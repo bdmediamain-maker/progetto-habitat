@@ -72,7 +72,16 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="h-full antialiased">
-      {/* Fonts loaded via @import in globals.css (Clash Display 700, Satoshi 400/500) */}
+      {/*
+        Inline critical font-family declarations — applied before any external
+        stylesheet arrives, preventing the flash of wrong-sized fallback font.
+        Fonts themselves are loaded via @import in globals.css.
+      */}
+      <style>{`
+        body { font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif; }
+        h1, h2, h3, h4, h5, h6,
+        .font-display { font-family: 'Clash Display', ui-sans-serif, system-ui, sans-serif; }
+      `}</style>
       <body className="min-h-full flex flex-col bg-base text-primary pt-16">
         {/* First-visit loading screen (client-only via ClientWrapper) */}
         <ClientWrapper />
