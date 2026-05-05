@@ -1,26 +1,188 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS  (Tailwind v4 — CSS-first config via @theme)
+   Colors, fonts, and spacing are declared here.
+   Tailwind generates utilities automatically:
+     bg-accent-red, text-primary, font-display, etc.
+───────────────────────────────────────────────────────────── */
+@theme {
+  /* Color palette */
+  --color-base:          #E4E2DD;
+  --color-primary:       #1E1E1E;
+  --color-accent-red:    #DB4A2B;
+  --color-accent-orange: #F8A348;
+  --color-accent-pink:   #FF89A9;
+  --color-footer-bg:     #1E1E1E;
+  --color-footer-text:   #E4E2DD;
+
+  /* Font stacks (loaded via @import above) */
+  --font-display: 'Clash Display', sans-serif;
+  --font-body:    'Satoshi', sans-serif;
+
+  /* Custom easing — available as `ease-spring` Tailwind utility */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─────────────────────────────────────────────────────────────
+   CUSTOM TYPOGRAPHY UTILITIES
+   Use as Tailwind classes: text-display-hero, text-body-lg …
+───────────────────────────────────────────────────────────── */
+@utility text-display-hero {
+  font-size: clamp(12vw, 18vw, 22vw);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-family: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility text-display-section {
+  font-size: clamp(6vw, 12vw, 14vw);
+  line-height: 0.75;
+  font-family: var(--font-display);
+}
+
+@utility text-display-campaign {
+  font-size: clamp(4vw, 6vw, 7vw);
+  line-height: 0.9;
+  font-family: var(--font-display);
+}
+
+@utility text-body-lg {
+  font-size: 20px;
+  font-family: var(--font-body);
+}
+
+@utility text-body-sm {
+  font-size: 14px;
+  font-family: var(--font-body);
+  letter-spacing: 0.1em;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HERO BLOB DRIFT ANIMATIONS
+   CSS-driven so blobs run at 60fps on the GPU without JS.
+   Three independent timing/distance values prevent synchrony.
+───────────────────────────────────────────────────────────── */
+@keyframes blob-drift-1 {
+  from { opacity: 0.60; transform: translate(   0px,   0px) scale(1.00); }
+  to   { opacity: 0.90; transform: translate( 30px, -20px) scale(1.05); }
+}
+@keyframes blob-drift-2 {
+  from { opacity: 0.65; transform: translate(   0px,   0px) scale(1.00); }
+  to   { opacity: 0.85; transform: translate(-25px,  30px) scale(0.95); }
+}
+@keyframes blob-drift-3 {
+  from { opacity: 0.55; transform: translate(   0px,   0px) scale(1.00); }
+  to   { opacity: 0.90; transform: translate( 20px, -30px) scale(1.08); }
+}
+
+/* Scroll indicator arrow */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0);   opacity: 0.5; }
+  50%       { transform: translateY(7px); opacity: 1;   }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SLIDE-UP ENTRANCE ANIMATION
+   Apply the `animate-enter` Tailwind class to any element,
+   or trigger via JS (IntersectionObserver) by adding the class
+   as elements scroll into view.
+───────────────────────────────────────────────────────────── */
+@keyframes slide-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
+@utility animate-enter {
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL BASE STYLES
+───────────────────────────────────────────────────────────── */
+
+/* Text selection */
+::selection {
+  background-color: #DB4A2B;
+  color: #ffffff;
+}
+
+/* Custom scrollbar (WebKit) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #E4E2DD;
+}
+::-webkit-scrollbar-thumb {
+  background: #DB4A2B;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MARQUEE — continuous horizontal ticker
+───────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PREFERS REDUCED MOTION
+   Disables all CSS-driven animations (blobs, marquee, scroll
+   indicator, slide-up) for users who opt out of motion.
+   GSAP and Framer Motion components perform their own check.
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DARK-CONTEXT SELECT  (contact form on #1E1E1E background)
+───────────────────────────────────────────────────────────── */
+.select-dark option {
+  background-color: #1E1E1E;
+  color:            #E4E2DD;
+}
+
+/* Hide native cursor on pointer devices — custom cursor takes over */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Page background & default type */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #E4E2DD;
+  color: #1E1E1E;
+  font-family: var(--font-body);
+}
+
+/* Heading family */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
 }

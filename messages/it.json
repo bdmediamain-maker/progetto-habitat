@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "work":       "Lavori",
+    "philosophy": "Filosofia",
+    "about":      "Studio",
+    "contact":    "Contatti"
+  },
+  "hero": {
+    "overline":      "Studio di Architettura e Bioarchitettura — Verona",
+    "line1":         "PLASMARE",
+    "line2":         "SPAZI",
+    "line3":         "E VITE",
+    "subtext":       "Progettiamo architettura che si muove tra estetica, sostenibilità ed esperienza umana.",
+    "cta_primary":   "Vedi i Lavori",
+    "cta_secondary": "La Nostra Filosofia"
+  },
+  "portfolio": {
+    "section_label": "Lavori Selezionati",
+    "line1":         "SELEZIONATI",
+    "line2":         "LAVORI",
+    "filters": {
+      "all":             "Tutti",
+      "residential":     "Residenziale",
+      "hospitality":     "Hospitality",
+      "contract":        "Contract",
+      "bioarchitecture": "Bioarchitettura"
+    }
+  },
+  "philosophy": {
+    "overline":  "Il Nostro Approccio",
+    "headline":  "Progettare spazi, plasmare vite, costruire futuri.",
+    "body":      "L'architettura non è mai un fine in sé. È il mezzo attraverso cui costruiamo luoghi dove le emozioni vengono vissute, le identità espresse e i futuri immaginati.",
+    "pillars": {
+      "p1_title": "Sostenibilità",
+      "p1_desc":  "Ogni progetto parte dalla terra su cui sorge e dall'aria che respira.",
+      "p2_title": "Identità",
+      "p2_desc":  "L'architettura deve portare il segno di chi la abita.",
+      "p3_title": "Scala Umana",
+      "p3_desc":  "Ogni dimensione è calibrata sul corpo, lo sguardo e il gesto."
+    }
+  },
+  "about": {
+    "label": "Fondatrice & Architetto Principale",
+    "bio":   "Doris Alberti ha fondato Progetto Habitat a Verona dopo quindici anni di pratica tra Italia, Portogallo e Giappone. Il suo lavoro si colloca all'intersezione tra bioarchitettura, onestà materiale e la silenziosa poesia dello spazio quotidiano.",
+    "cta":   "Leggi il Profilo Completo",
+    "stats": {
+      "years":     "Anni",
+      "projects":  "Progetti",
+      "countries": "Paesi"
+    }
+  },
+  "contact": {
+    "overline":    "Inizia un Progetto",
+    "headline_l1": "Costruiamo",
+    "headline_l2": "Qualcosa di",
+    "headline_l3": "Straordinario",
+    "subtext":     "Ogni grande progetto inizia con una conversazione. Raccontaci la tua visione e scopriamo insieme come darle forma.",
+    "form": {
+      "name_label":         "Nome e Cognome",
+      "name_placeholder":   "Il tuo nome",
+      "email_label":        "Indirizzo Email",
+      "email_placeholder":  "tu@esempio.it",
+      "type_label":         "Tipo di Progetto",
+      "type_placeholder":   "Seleziona un tipo",
+      "message_label":      "Il Tuo Progetto",
+      "message_placeholder":"Descrivi il progetto, scala, luogo, tempistiche…",
+      "submit":             "Invia Messaggio",
+      "sending":            "Invio in corso…",
+      "success_title":      "Grazie.",
+      "success_body":       "Abbiamo ricevuto il tuo messaggio e ti contatteremo a breve.",
+      "error_name":         "Il nome è obbligatorio",
+      "error_email":        "Inserisci un indirizzo email valido",
+      "error_message":      "Raccontaci del tuo progetto"
+    },
+    "types": {
+      "residential":     "Residenziale",
+      "hospitality":     "Hospitality",
+      "commercial":      "Commerciale",
+      "interior":        "Interior",
+      "bioarchitecture": "Bioarchitettura",
+      "other":           "Altro"
+    }
+  },
+  "footer": {
+    "tagline":         "Architettura radicata nel luogo, plasmata dalla natura, costruita per durare.",
+    "navigate_label":  "Naviga",
+    "studio_label":    "Studio",
+    "hours_label":     "Orari Studio",
+    "hours_weekday":   "Lun – Ven: 9:00 – 18:00",
+    "hours_saturday":  "Sab: 10:00 – 13:00",
+    "hours_sunday":    "Dom: Chiuso",
+    "rights":          "© 2025 Progetto Habitat — Tutti i diritti riservati",
+    "links": {
+      "work":            "Lavori",
+      "philosophy":      "Filosofia",
+      "about":           "Studio",
+      "contact":         "Contatti",
+      "services":        "Servizi",
+      "bioarchitecture": "Bioarchitettura"
+    }
+  }
+}

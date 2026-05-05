@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "work":       "Work",
+    "philosophy": "Philosophy",
+    "about":      "About",
+    "contact":    "Contact"
+  },
+  "hero": {
+    "overline":      "Architecture & Bioarchitecture Studio — Verona",
+    "line1":         "SHAPING",
+    "line2":         "SPACES",
+    "line3":         "& LIVES",
+    "subtext":       "We design architecture that moves between aesthetics, sustainability, and the human experience.",
+    "cta_primary":   "View Our Work",
+    "cta_secondary": "Our Philosophy"
+  },
+  "portfolio": {
+    "section_label": "Selected Works",
+    "line1":         "SELECTED",
+    "line2":         "WORKS",
+    "filters": {
+      "all":             "All",
+      "residential":     "Residential",
+      "hospitality":     "Hospitality",
+      "contract":        "Contract",
+      "bioarchitecture": "Bioarchitecture"
+    }
+  },
+  "philosophy": {
+    "overline":  "Our Approach",
+    "headline":  "Designing space, shaping life, building futures.",
+    "body":      "Architecture is never an end in itself. It is the medium through which we build places where emotions are lived, identities expressed, and futures imagined.",
+    "pillars": {
+      "p1_title": "Sustainability",
+      "p1_desc":  "Each project begins with the land it stands on and the air it breathes.",
+      "p2_title": "Identity",
+      "p2_desc":  "Architecture must carry the mark of those who inhabit it.",
+      "p3_title": "Human Scale",
+      "p3_desc":  "Every dimension is calibrated to the body, the gaze, and the gesture."
+    }
+  },
+  "about": {
+    "label": "Founder & Principal Architect",
+    "bio":   "Doris Alberti founded Progetto Habitat in Verona after fifteen years of practice across Italy, Portugal, and Japan. Her work sits at the intersection of bioarchitecture, material honesty, and the quiet poetry of everyday space.",
+    "cta":   "Read Full Profile",
+    "stats": {
+      "years":     "Years",
+      "projects":  "Projects",
+      "countries": "Countries"
+    }
+  },
+  "contact": {
+    "overline":    "Start a Project",
+    "headline_l1": "Let's Build",
+    "headline_l2": "Something",
+    "headline_l3": "Remarkable",
+    "subtext":     "Every great project begins with a conversation. Tell us your vision and let's find out how we can shape it into something lasting.",
+    "form": {
+      "name_label":         "Full Name",
+      "name_placeholder":   "Your name",
+      "email_label":        "Email Address",
+      "email_placeholder":  "you@example.com",
+      "type_label":         "Project Type",
+      "type_placeholder":   "Select a type",
+      "message_label":      "About Your Project",
+      "message_placeholder":"Describe the project, scale, location, timeline…",
+      "submit":             "Send Message",
+      "sending":            "Sending…",
+      "success_title":      "Thank you.",
+      "success_body":       "We've received your message and will be in touch shortly.",
+      "error_name":         "Name is required",
+      "error_email":        "A valid email is required",
+      "error_message":      "Please tell us about your project"
+    },
+    "types": {
+      "residential":     "Residential",
+      "hospitality":     "Hospitality",
+      "commercial":      "Commercial",
+      "interior":        "Interior",
+      "bioarchitecture": "Bioarchitecture",
+      "other":           "Other"
+    }
+  },
+  "footer": {
+    "tagline":         "Architecture rooted in place, shaped by nature, built to endure.",
+    "navigate_label":  "Navigate",
+    "studio_label":    "Studio",
+    "hours_label":     "Studio Hours",
+    "hours_weekday":   "Mon – Fri: 9:00 – 18:00",
+    "hours_saturday":  "Sat: 10:00 – 13:00",
+    "hours_sunday":    "Sun: Closed",
+    "rights":          "© 2025 Progetto Habitat — All rights reserved",
+    "links": {
+      "work":            "Work",
+      "philosophy":      "Philosophy",
+      "about":           "About",
+      "contact":         "Contact",
+      "services":        "Services",
+      "bioarchitecture": "Bioarchitecture"
+    }
+  }
+}
